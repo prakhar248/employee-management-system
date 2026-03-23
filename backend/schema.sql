@@ -2,12 +2,7 @@
 -- Employee Management System — MySQL Schema
 -- Run this in your MySQL client before starting the app
 -- ─────────────────────────────────────────────────
-
--- Step 1: Create the database
-CREATE DATABASE IF NOT EXISTS employee_db;
-
--- Step 2: Use the database
-USE employee_db;
+USE railway;
 
 -- Step 3: Create the employees table
 CREATE TABLE IF NOT EXISTS employees (
