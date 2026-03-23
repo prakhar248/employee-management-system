@@ -1,0 +1,512 @@
+/* ─────────────────────────────────────────────────────────────────────────────
+   Employee Management System — Stylesheet
+   Font: DM Sans + DM Mono (loaded via index.html)
+───────────────────────────────────────────────────────────────────────────── */
+
+:root {
+  --bg:          #f5f5f0;
+  --surface:     #ffffff;
+  --border:      #e2e2da;
+  --text:        #1a1a18;
+  --text-muted:  #6b6b63;
+  --primary:     #1c6ef2;
+  --primary-dk:  #1456cc;
+  --danger:      #dc2626;
+  --danger-dk:   #b91c1c;
+  --success:     #16a34a;
+  --warning:     #d97706;
+  --radius:      10px;
+  --shadow:      0 1px 3px rgba(0,0,0,.08), 0 4px 12px rgba(0,0,0,.04);
+  --shadow-lg:   0 8px 32px rgba(0,0,0,.12), 0 2px 8px rgba(0,0,0,.06);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { font-size: 15px; }
+
+body {
+  font-family: "DM Sans", system-ui, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.5;
+  min-height: 100vh;
+}
+
+/* ── LAYOUT ── */
+.app { min-height: 100vh; }
+
+.container {
+  max-width: 1140px;
+  margin: 0 auto;
+  padding: 32px 20px 60px;
+}
+
+/* ── HEADER ── */
+.app-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 28px;
+  flex-wrap: wrap;
+}
+
+.app-header h1 {
+  font-size: 1.75rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: var(--text);
+}
+
+.subtitle {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  margin-top: 2px;
+}
+
+/* ── BUTTONS ── */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  border-radius: var(--radius);
+  border: none;
+  font-family: inherit;
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.15s, transform 0.1s, box-shadow 0.15s;
+  white-space: nowrap;
+}
+.btn:active { transform: scale(0.97); }
+
+.btn-primary {
+  background: var(--primary);
+  color: #fff;
+  box-shadow: 0 1px 4px rgba(28,110,242,.3);
+}
+.btn-primary:hover { background: var(--primary-dk); box-shadow: 0 2px 8px rgba(28,110,242,.4); }
+.btn-primary:disabled { opacity: 0.6; cursor: not-allowed; }
+
+.btn-ghost {
+  background: transparent;
+  color: var(--text-muted);
+  border: 1px solid var(--border);
+}
+.btn-ghost:hover { background: var(--bg); color: var(--text); }
+
+.btn-sort {
+  background: var(--surface);
+  color: var(--text-muted);
+  border: 1px solid var(--border);
+  padding: 6px 12px;
+  font-size: 0.8125rem;
+}
+.btn-sort:hover, .btn-sort.active {
+  background: var(--primary);
+  color: #fff;
+  border-color: var(--primary);
+}
+
+.btn-edit {
+  background: #eff6ff;
+  color: var(--primary);
+  border: 1px solid #bfdbfe;
+  padding: 5px 12px;
+  font-size: 0.8125rem;
+}
+.btn-edit:hover { background: var(--primary); color: #fff; border-color: var(--primary); }
+
+.btn-delete {
+  background: #fef2f2;
+  color: var(--danger);
+  border: 1px solid #fecaca;
+  padding: 5px 12px;
+  font-size: 0.8125rem;
+}
+.btn-delete:hover { background: var(--danger); color: #fff; border-color: var(--danger); }
+
+/* ── ALERTS ── */
+.alert {
+  padding: 12px 16px;
+  border-radius: var(--radius);
+  font-size: 0.875rem;
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.alert-success {
+  background: #f0fdf4;
+  color: var(--success);
+  border: 1px solid #bbf7d0;
+}
+.alert-error {
+  background: #fef2f2;
+  color: var(--danger);
+  border: 1px solid #fecaca;
+}
+
+/* ── TOOLBAR ── */
+.toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 14px;
+  flex-wrap: wrap;
+}
+.toolbar-left, .toolbar-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.search-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+.search-icon {
+  position: absolute;
+  left: 11px;
+  font-size: 0.85rem;
+  pointer-events: none;
+}
+.search-input {
+  padding: 8px 32px 8px 34px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  font-family: inherit;
+  font-size: 0.875rem;
+  background: var(--surface);
+  color: var(--text);
+  width: 240px;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+.search-input:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(28,110,242,.12);
+}
+.clear-btn {
+  position: absolute;
+  right: 8px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--text-muted);
+  font-size: 0.8rem;
+  padding: 2px 4px;
+  border-radius: 4px;
+  line-height: 1;
+}
+.clear-btn:hover { color: var(--text); background: var(--bg); }
+
+.select-input {
+  padding: 8px 12px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  font-family: inherit;
+  font-size: 0.875rem;
+  background: var(--surface);
+  color: var(--text);
+  cursor: pointer;
+}
+.select-input:focus { outline: none; border-color: var(--primary); }
+
+/* ── STATS BAR ── */
+.stats-bar {
+  display: flex;
+  gap: 24px;
+  font-size: 0.8125rem;
+  color: var(--text-muted);
+  margin-bottom: 12px;
+  padding: 0 2px;
+}
+.stats-bar strong { color: var(--text); }
+
+/* ── TABLE ── */
+.table-wrap {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+  overflow-x: auto;
+}
+
+.emp-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.875rem;
+}
+
+.emp-table thead {
+  background: #fafafa;
+  border-bottom: 1px solid var(--border);
+}
+.emp-table thead th {
+  padding: 12px 16px;
+  text-align: left;
+  font-weight: 600;
+  font-size: 0.8125rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+}
+.emp-table thead th.sortable {
+  cursor: pointer;
+  user-select: none;
+}
+.emp-table thead th.sortable:hover { color: var(--primary); }
+
+.emp-table tbody tr {
+  border-bottom: 1px solid var(--border);
+  transition: background 0.1s;
+}
+.emp-table tbody tr:last-child { border-bottom: none; }
+.emp-table tbody tr:hover { background: #fafaf8; }
+
+.emp-table td {
+  padding: 13px 16px;
+  vertical-align: middle;
+}
+
+.row-num {
+  color: var(--text-muted);
+  font-family: "DM Mono", monospace;
+  font-size: 0.8rem;
+  width: 40px;
+}
+
+.emp-name { font-weight: 500; }
+
+.salary-cell {
+  font-family: "DM Mono", monospace;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #15803d;
+}
+
+.actions-cell {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+/* ── DEPT BADGE ── */
+.dept-badge {
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+/* ── SORT ARROWS ── */
+.sort-neutral { color: #d1d5db; margin-left: 4px; font-size: 0.75rem; }
+.sort-active  { color: var(--primary); margin-left: 4px; font-size: 0.8rem; font-weight: 700; }
+
+/* ── EMPTY STATE ── */
+.empty-state {
+  text-align: center;
+  padding: 64px 20px;
+  color: var(--text-muted);
+}
+.empty-icon { font-size: 3rem; margin-bottom: 12px; }
+.empty-state h3 { font-size: 1.1rem; color: var(--text); margin-bottom: 6px; }
+.empty-state p  { font-size: 0.875rem; }
+
+/* ── LOADING SPINNER ── */
+.loading-spinner-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  padding: 64px 20px;
+  color: var(--text-muted);
+  font-size: 0.875rem;
+}
+.spinner {
+  width: 36px;
+  height: 36px;
+  border: 3px solid var(--border);
+  border-top-color: var(--primary);
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* ── MODAL ── */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 20px;
+  backdrop-filter: blur(2px);
+  animation: fadeIn 0.15s ease;
+}
+@keyframes fadeIn { from { opacity: 0 } to { opacity: 1 } }
+
+.modal {
+  background: var(--surface);
+  border-radius: 14px;
+  box-shadow: var(--shadow-lg);
+  width: 100%;
+  max-width: 540px;
+  padding: 28px;
+  animation: slideUp 0.2s cubic-bezier(.22,.61,.36,1);
+}
+@keyframes slideUp { from { transform: translateY(14px); opacity: 0 } to { transform: translateY(0); opacity: 1 } }
+
+.modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+.modal-header h2 {
+  font-size: 1.2rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.id-badge {
+  font-size: 0.8rem;
+  font-weight: 400;
+  color: var(--text-muted);
+  font-family: "DM Mono", monospace;
+}
+.close-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--text-muted);
+  font-size: 1rem;
+  padding: 6px;
+  border-radius: 6px;
+  line-height: 1;
+  transition: background 0.1s, color 0.1s;
+}
+.close-btn:hover { background: var(--bg); color: var(--text); }
+
+/* ── FORM ── */
+.emp-form { display: flex; flex-direction: column; gap: 16px; }
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.form-group label {
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: var(--text-muted);
+}
+.form-group input {
+  padding: 9px 12px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  font-family: inherit;
+  font-size: 0.9rem;
+  color: var(--text);
+  background: var(--surface);
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+.form-group input:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(28,110,242,.1);
+}
+.form-group input::placeholder { color: #c0bfb8; }
+
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 4px;
+  padding-top: 16px;
+  border-top: 1px solid var(--border);
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 600px) {
+  .form-row { grid-template-columns: 1fr; }
+  .toolbar { flex-direction: column; align-items: stretch; }
+  .toolbar-left, .toolbar-right { width: 100%; }
+  .search-input { width: 100%; }
+  .app-header { flex-direction: column; }
+  .emp-table { min-width: 600px; }
+}
+
+/* ── ANALYTICS SECTION ── */
+.analytics-section {
+  background: #fff;
+  border: 1px solid #e2e2da;
+  border-radius: 10px;
+  padding: 20px 24px;
+  margin-bottom: 20px;
+}
+.section-title {
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 14px;
+  color: #1a1a18;
+}
+.analytics-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 12px;
+  margin-bottom: 20px;
+}
+.analytic-card {
+  background: #f5f5f0;
+  border-radius: 8px;
+  padding: 14px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.analytic-label { font-size: 0.75rem; color: #6b6b63; font-weight: 500; text-transform: uppercase; letter-spacing: 0.04em; }
+.analytic-value { font-size: 1.2rem; font-weight: 700; color: #1a1a18; }
+.analytic-green  { color: #15803d; }
+.analytic-blue   { color: #1d4ed8; }
+.analytic-orange { color: #c2410c; }
+
+/* ── DEPT COUNT ── */
+.dept-count-title { font-size: 0.875rem; font-weight: 600; color: #6b6b63; margin-bottom: 10px; }
+.dept-count-list  { display: flex; flex-direction: column; gap: 8px; }
+.dept-count-item  { display: flex; align-items: center; gap: 12px; }
+.dept-count-badge { font-size: 0.78rem; padding: 2px 10px; border-radius: 999px; white-space: nowrap; font-weight: 500; }
+.dept-count-bar-wrap { flex: 1; background: #f0f0ea; border-radius: 4px; height: 8px; overflow: hidden; }
+.dept-count-bar  { height: 100%; background: #1c6ef2; border-radius: 4px; transition: width 0.4s ease; }
+.dept-count-num  { font-size: 0.8rem; color: #6b6b63; white-space: nowrap; min-width: 90px; text-align: right; }
+
+/* ── NEW TABLE BADGES ── */
+.grade-badge, .category-badge {
+  display: inline-block;
+  padding: 2px 10px;
+  border-radius: 999px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  border: 1px solid transparent;
+  white-space: nowrap;
+}
+.bonus-cell       { color: #6d28d9; font-family: "DM Mono", monospace; font-size: 0.85rem; }
+.total-salary-cell{ color: #1d4ed8; font-family: "DM Mono", monospace; font-size: 0.85rem; font-weight: 600; }
