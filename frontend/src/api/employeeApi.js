@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_BASE = "http://localhost:5000/api/employees";
+const API = "https://employee-management-system-yj3n.onrender.com/api/employees";
 
 // Fetch all employees with optional query params
 export const fetchEmployees = (params = {}) => {
